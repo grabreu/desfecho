@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Desfecho.AspNetCore</PackageId>
+    <Description>ASP.NET Core integrations for Desfecho.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.0.0</Version> <!-- x-release-please-version -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Desfecho\Desfecho.csproj" />
+  </ItemGroup>
+
+</Project>

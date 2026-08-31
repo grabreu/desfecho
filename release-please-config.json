@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "simple",
+  "packages": {
+    "src/Desfecho": {
+      "package-name": "Desfecho",
+      "component": "Desfecho",
+      "extra-files": [
+        {
+          "type": "generic",
+          "path": "Desfecho.csproj"
+        }
+      ]
+    },
+    "src/Desfecho.AspNetCore": {
+      "package-name": "Desfecho.AspNetCore",
+      "component": "Desfecho.AspNetCore",
+      "extra-files": [
+        {
+          "type": "generic",
+          "path": "Desfecho.AspNetCore.csproj"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,77 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: cd-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+
+    steps:
+      - name: Release
+        id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      - name: Checkout
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup .NET
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Pack Desfecho
+        if: ${{ steps.release.outputs['src/Desfecho--release_created'] == 'true' }}
+        run: >
+          dotnet pack src/Desfecho/Desfecho.csproj
+          --configuration Release
+          --output artifacts
+
+      - name: Pack Desfecho.AspNetCore
+        if: ${{ steps.release.outputs['src/Desfecho.AspNetCore--release_created'] == 'true' }}
+        run: >
+          dotnet pack src/Desfecho.AspNetCore/Desfecho.AspNetCore.csproj
+          --configuration Release
+          --output artifacts
+
+      - name: NuGet login
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        id: nuget
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
+        with:
+          user: ${{ github.repository_owner }}
+
+      - name: Publish Desfecho
+        if: ${{ steps.release.outputs['src/Desfecho--release_created'] == 'true' }}
+        run: >
+          dotnet nuget push
+          artifacts/Desfecho.${{ steps.release.outputs['src/Desfecho--version'] }}.nupkg
+          --source https://api.nuget.org/v3/index.json
+          --api-key ${{ steps.nuget.outputs.NUGET_API_KEY }}
+          --skip-duplicate
+
+      - name: Publish Desfecho.AspNetCore
+        if: ${{ steps.release.outputs['src/Desfecho.AspNetCore--release_created'] == 'true' }}
+        run: >
+          dotnet nuget push
+          artifacts/Desfecho.AspNetCore.${{ steps.release.outputs['src/Desfecho.AspNetCore--version'] }}.nupkg
+          --source https://api.nuget.org/v3/index.json
+          --api-key ${{ steps.nuget.outputs.NUGET_API_KEY }}
+          --skip-duplicate

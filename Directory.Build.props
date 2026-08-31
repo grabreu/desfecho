@@ -1,0 +1,23 @@
+<Project>
+  
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Gabriel (@grabreu)</Authors>
+    <PackageProjectUrl>https://github.com/grabreu/desfecho</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/grabreu/desfecho</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)README.md" Visible="false" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)LICENSE" Visible="false" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  
+</Project>
