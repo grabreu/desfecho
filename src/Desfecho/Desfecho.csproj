@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Desfecho</PackageId>
+    <Description>A simple and lightweight Result pattern implementation for .NET.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<Version>0.0.0</Version> <!-- x-release-please-version -->
+  </PropertyGroup>
+
+</Project>

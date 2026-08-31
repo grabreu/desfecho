@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".github/workflows/cd.yml" />
+    <File Path=".github/workflows/ci.yml" />
+    <File Path=".gitignore" />
+    <File Path=".release-please-manifest.json" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="release-please-config.json" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Desfecho.AspNetCore/Desfecho.AspNetCore.csproj" Id="58bbea87-8829-4442-9ded-4a2c7b6e37c8" />
+    <Project Path="src/Desfecho/Desfecho.csproj" Id="39454d01-e6a4-4ce2-bf3e-ef08a25cf6b1" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Desfecho.AspNetCore.UnitTests/Desfecho.AspNetCore.UnitTests.csproj" Id="b76b8938-62d6-4627-bfc3-a05752e446df" />
+    <Project Path="tests/Desfecho.UnitTests/Desfecho.UnitTests.csproj" Id="a7f87329-8eb9-4c37-8e20-b6d460991708" />
+  </Folder>
+</Solution>
