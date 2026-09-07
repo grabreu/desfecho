@@ -54,7 +54,8 @@ public class ResultTests
         Result<string> result = s_validationError;
 
         // Act & Assert
-        Should.Throw<InvalidOperationException>(() => _ = result.Value);
+        Should.Throw<InvalidOperationException>(() => _ = result.Value)
+            .Message.ShouldBe("Result is an error; there is no value.");
     }
 
     [Fact]
@@ -64,7 +65,8 @@ public class ResultTests
         Result<string> result = "value";
 
         // Act & Assert
-        Should.Throw<InvalidOperationException>(() => _ = result.Errors);
+        Should.Throw<InvalidOperationException>(() => _ = result.Errors)
+            .Message.ShouldBe("Result is successful; there are no errors.");
     }
 
     [Fact]
