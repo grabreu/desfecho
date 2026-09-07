@@ -1,7 +1,7 @@
 # Desfecho
 
-[![CI](https://github.com/grabreu/desfecho/actions/workflows/ci.yml/badge.svg)](https://github.com/grabreu/desfecho/actions/workflows/ci.yml)
-[![CD](https://github.com/grabreu/desfecho/actions/workflows/cd.yml/badge.svg)](https://github.com/grabreu/desfecho/actions/workflows/cd.yml)
+[![CI](https://github.com/grabreu/desfecho/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/grabreu/desfecho/actions/workflows/ci.yml)
+[![CD](https://github.com/grabreu/desfecho/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/grabreu/desfecho/actions/workflows/cd.yml)
 [![NuGet](https://img.shields.io/nuget/v/Desfecho.svg?style=flat-square&logo=nuget&label=Desfecho)](https://www.nuget.org/packages/Desfecho)
 [![NuGet](https://img.shields.io/nuget/v/Desfecho.AspNetCore.svg?style=flat-square&logo=nuget&label=Desfecho.AspNetCore)](https://www.nuget.org/packages/Desfecho.AspNetCore)
 [![License](https://img.shields.io/github/license/grabreu/desfecho?style=flat-square)](LICENSE)
