@@ -27,6 +27,30 @@ public class ErrorTests
     }
 
     [Fact]
+    public void Unauthorized_WithValidData_SetsExpectedProperties()
+    {
+        // Act
+        var error = Error.Unauthorized("TodoItem.Unauthorized", "Authentication is required.");
+
+        // Assert
+        error.Code.ShouldBe("TodoItem.Unauthorized");
+        error.Description.ShouldBe("Authentication is required.");
+        error.Type.ShouldBe(ErrorType.Unauthorized);
+    }
+
+    [Fact]
+    public void Forbidden_WithValidData_SetsExpectedProperties()
+    {
+        // Act
+        var error = Error.Forbidden("TodoItem.Forbidden", "You do not have access to this todo item.");
+
+        // Assert
+        error.Code.ShouldBe("TodoItem.Forbidden");
+        error.Description.ShouldBe("You do not have access to this todo item.");
+        error.Type.ShouldBe(ErrorType.Forbidden);
+    }
+
+    [Fact]
     public void NotFound_WithValidData_SetsExpectedProperties()
     {
         // Act

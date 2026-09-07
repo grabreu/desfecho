@@ -46,15 +46,17 @@ An `Error` is a `Code`, a `Description`, and a `Type`:
 
 ```cs
 Error.Validation("TodoItem.Title", "Title is required.");
+Error.Unauthorized("TodoItem.Unauthorized", "Authentication is required.");
+Error.Forbidden("TodoItem.Forbidden", "You do not have access to this todo item.");
 Error.NotFound("TodoItem.NotFound", "Todo item was not found.");
 Error.Conflict("TodoItem.Conflict", "Todo item already exists.");
 ```
 
-`Type` is one of `Validation`, `NotFound` or `Conflict` — used by `Desfecho.AspNetCore` to pick an HTTP status code.
+`Type` is one of `Validation`, `Unauthorized`, `Forbidden`, `NotFound` or `Conflict` — used by `Desfecho.AspNetCore` to pick an HTTP status code.
 
 ## ASP.NET Core
 
-`Desfecho.AspNetCore` turns a `Result<TValue>` into a minimal API `IResult`, mapping errors to `ProblemDetails` (`Validation` → 400, `NotFound` → 404, `Conflict` → 409).
+`Desfecho.AspNetCore` turns a `Result<TValue>` into a minimal API `IResult`, mapping errors to `ProblemDetails` (`Validation` → 400, `Unauthorized` → 401, `Forbidden` → 403, `NotFound` → 404, `Conflict` → 409).
 
 ```cs
 app.MapPost("/todo-items", async (CreateTodoItemRequest request, ISender sender, CancellationToken ct) =>
