@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Authors>Gabriel (@grabreu)</Authors>
+    <Authors>Gabriel Abreu (@grabreu)</Authors>
     <PackageProjectUrl>https://github.com/grabreu/desfecho</PackageProjectUrl>
     <RepositoryUrl>https://github.com/grabreu/desfecho</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

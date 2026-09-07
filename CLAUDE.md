@@ -20,7 +20,7 @@ Read `README.md` before making changes — it documents the actual public API (`
 ## Source
 
 - `src/Desfecho/Result.cs` - the `Result<TValue>` type: implicit conversions from `TValue`, `Error` and `List<Error>`, `Match`.
-- `src/Desfecho/Error.cs` - the `Error` type: `Code`, `Description`, `Type`, and the `Validation`/`NotFound`/`Conflict` factory methods.
+- `src/Desfecho/Error.cs` - the `Error` type: `Code`, `Description`, `Type`, and the `Validation`/`Unauthorized`/`Forbidden`/`NotFound`/`Conflict` factory methods.
 - `src/Desfecho/ErrorType.cs` - the `ErrorType` enum.
 - `src/Desfecho.AspNetCore/MinimalApiResultExtensions.cs` - `ToOk()`, `ToCreated(location)`, `ToNoContent()`, `errors.ToProblem()`.
 
