@@ -24,8 +24,8 @@ public readonly struct Result<TValue>
     public static implicit operator Result<TValue>(Error error) => new([error]);
     public static implicit operator Result<TValue>(List<Error> errors) => new(errors);
 
-    public TValue Value => IsSuccess ? _value! : throw new InvalidOperationException();
-    public IReadOnlyList<Error> Errors => IsError ? _errors! : throw new InvalidOperationException();
+    public TValue Value => IsSuccess ? _value! : throw new InvalidOperationException("Result is an error; there is no value.");
+    public IReadOnlyList<Error> Errors => IsError ? _errors! : throw new InvalidOperationException("Result is successful; there are no errors.");
 
     public TResult Match<TResult>(Func<TValue, TResult> onSuccess, Func<IReadOnlyList<Error>, TResult> onError)
     {
