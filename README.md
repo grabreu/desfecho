@@ -13,6 +13,10 @@ dotnet add package Desfecho
 dotnet add package Desfecho.AspNetCore
 ```
 
+## Tech stack
+
+.NET 10 · xUnit v3 · Shouldly
+
 ## Why
 
 Stop throwing exceptions for expected failures. Return a `Result<TValue>` instead — it's either a value or one or more `Error`s.
@@ -74,6 +78,19 @@ app.MapPost("/todo-items", async (CreateTodoItemRequest request, ISender sender,
 | --- | --- |
 | [`Desfecho`](src/Desfecho) | `Result<TValue>`, `Error`, `ErrorType` |
 | [`Desfecho.AspNetCore`](src/Desfecho.AspNetCore) | `Result<TValue>` → minimal API `IResult` |
+
+## Development
+
+```bash
+dotnet restore
+dotnet build --configuration Release
+dotnet test --configuration Release
+dotnet format --verify-no-changes --severity info
+```
+
+## Deployment
+
+Versioning, changelog, and NuGet publish are automated by [release-please](https://github.com/googleapis/release-please), tracking `Desfecho` and `Desfecho.AspNetCore` as independent packages: merges to `main` update a release PR from Conventional Commits, and merging that PR tags the release and publishes the affected package(s) to NuGet via GitHub Actions.
 
 ## License
 
