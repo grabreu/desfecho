@@ -11,13 +11,37 @@ Read `README.md` before making changes — it documents the actual public API (`
 - Keep changes scoped to the requested change.
 - Prefer existing patterns over introducing new abstractions.
 - Do not add dependencies unless they are necessary.
-- Run formatting, build, and tests after changes.
-- Do not change CI/CD configuration unless explicitly required.
-- Do not claim a validation command passed unless it was actually run.
 - Do not fill gaps with assumptions when the user hasn't given the information — ask, or mark it as pending.
+- Do not claim a validation command passed unless it was actually run.
 - Code, comments, commit messages, and documentation are always written in English.
 
-## Source
+## Git
+
+- Do not create or switch branches unless explicitly requested.
+- Do not create commits unless explicitly requested.
+- Do not push unless explicitly requested.
+- Keep commits focused on the requested change.
+- Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/) (`type: summary`).
+
+## Documentation
+
+### Audience
+
+A developer evaluating whether to add this as a dependency. Not onboarding material — keep it concise and skimmable.
+
+### Content Rules
+
+- State facts concisely. Avoid unnecessary explanations or trailing rationale.
+- Do not document information that is already obvious from the repository structure or configuration.
+- Do not invent features, API shapes, or future direction — mark undecided things as TODO.
+- Document a capability only after it is implemented and verified.
+- Use proper Markdown headings (`##`, `###`), not bold text as headings.
+
+---
+
+## Project-Specific Guidelines
+
+### Source
 
 - `src/Desfecho/Result.cs` - the `Result<TValue>` type: implicit conversions from `TValue`, `Error` and `List<Error>`, `Match`.
 - `src/Desfecho/Error.cs` - the `Error` type: `Code`, `Description`, `Type`, and the `Validation`/`Unauthorized`/`Forbidden`/`NotFound`/`Conflict` factory methods.
@@ -26,45 +50,6 @@ Read `README.md` before making changes — it documents the actual public API (`
 
 Every public type/method should have matching coverage in `tests/Desfecho.UnitTests` or `tests/Desfecho.AspNetCore.UnitTests`.
 
-## Validation
+### Validation
 
-- `dotnet format --verify-no-changes --severity info`
-- `dotnet build --configuration Release`
-- `dotnet test --configuration Release`
-
-## Git
-
-Follow the conventions defined in `CONTRIBUTING.md` for branches, commits, and pull requests.
-
-- Do not create or switch branches unless explicitly requested by the user.
-- Do not create commits unless explicitly requested by the user.
-- Do not push changes unless explicitly requested by the user.
-- Keep commits focused on the requested change.
-
-## Releases
-
-Versioning, changelog, and NuGet publish are automated by [release-please](https://github.com/googleapis/release-please) — see `CONTRIBUTING.md` for how commit types map to version bumps. Do not hand-edit `version` in the `.csproj` files or `.release-please-manifest.json`; release-please owns both after the initial `1.0.0` bootstrap.
-
-## Documentation
-
-Follow the documentation conventions below when creating or updating project documentation.
-
-### Audience
-
-Write for a developer evaluating whether to add this as a dependency.
-
-Keep documentation concise and skimmable. Do not write onboarding tutorials unless explicitly requested.
-
-### README Structure
-
-`README.md` — badges, one-line description, install, `Why` (with a runnable example), `Errors`, `ASP.NET Core`, `Packages`, `License`.
-
-Keep the existing README structure unless there is a clear reason to change it.
-
-### Content Rules
-
-- State facts concisely. Avoid unnecessary explanations or trailing rationale.
-- Do not document information that is already obvious from the repository structure or configuration.
-- Do not invent features, API shapes, or future direction.
-- Document a capability only after it is implemented and verified.
-- Use proper Markdown headings (`##`, `###`, etc.), not bold text as headings.
+Run `dotnet format --verify-no-changes --severity info`, `dotnet build --configuration Release`, and `dotnet test --configuration Release` before considering a change done — CI (`.github/workflows/ci.yml`) runs the same on push/PR to `main`.
