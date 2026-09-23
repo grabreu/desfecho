@@ -19,7 +19,7 @@ dotnet add package Desfecho.AspNetCore
 
 ## Why
 
-Stop throwing exceptions for expected failures. Return a `Result<TValue>` instead — it's either a value or one or more `Error`s.
+Stop throwing exceptions for expected failures. Return a `Result<TValue>` instead: it's either a value or one or more `Error`s.
 
 ```cs
 public Result<TodoItem> CompleteTodoItem(Guid id)
@@ -42,7 +42,7 @@ var message = result.Match(
     errors => errors[0].Description);
 ```
 
-`Result<TValue>` converts implicitly from `TValue`, `Error` and `List<Error>`, so returning one is all you need — no wrapping, no `new`.
+`Result<TValue>` converts implicitly from `TValue`, `Error` and `List<Error>`, so returning one is all you need, no wrapping, no `new`.
 
 ## Errors
 
@@ -56,7 +56,7 @@ Error.NotFound("TodoItem.NotFound", "Todo item was not found.");
 Error.Conflict("TodoItem.Conflict", "Todo item already exists.");
 ```
 
-`Type` is one of `Validation`, `Unauthorized`, `Forbidden`, `NotFound` or `Conflict` — used by `Desfecho.AspNetCore` to pick an HTTP status code.
+`Type` is one of `Validation`, `Unauthorized`, `Forbidden`, `NotFound` or `Conflict`, used by `Desfecho.AspNetCore` to pick an HTTP status code.
 
 ## ASP.NET Core
 
