@@ -43,10 +43,13 @@ A developer evaluating whether to add this as a dependency. Not onboarding mater
 
 ### Source
 
-- `src/Desfecho/Result.cs` - the `Result<TValue>` type: implicit conversions from `TValue`, `Error` and `List<Error>`, `Match`.
-- `src/Desfecho/Error.cs` - the `Error` type: `Code`, `Description`, `Type`, and the `Validation`/`Unauthorized`/`Forbidden`/`NotFound`/`Conflict` factory methods.
+- `src/Desfecho/Result.cs` - the `Result` type: `Success`, the error factories (`Invalid`/`Unauthorized`/`Forbidden`/`NotFound`/`Conflict`), implicit conversion from `Error` and `ErrorList`, `Match`.
+- `src/Desfecho/Result.Generic.cs` - the `Result<TValue>` type: implicit conversions from `TValue`, `Error` and `ErrorList`, `Match`, `Map`, `Then`.
+- `src/Desfecho/Error.cs` - the `Error` record: `Type`, `Description`, `Property`.
+- `src/Desfecho/ErrorList.cs` - the `ErrorList` type: one or more `Error`s.
 - `src/Desfecho/ErrorType.cs` - the `ErrorType` enum.
-- `src/Desfecho.AspNetCore/MinimalApiResultExtensions.cs` - `ToOk()`, `ToCreated(location)`, `ToNoContent()`, `errors.ToProblem()`.
+- `src/Desfecho.AspNetCore/ResultExtensions.cs` - `ToOk()`, `ToCreated(location)`, `ToNoContent()`, on `Result`/`Result<TValue>` and `Task` of them.
+- `src/Desfecho.AspNetCore/ErrorExtensions.cs` - `ToProblem()` on `Error` and `IReadOnlyList<Error>`.
 
 Every public type/method should have matching coverage in `tests/Desfecho.UnitTests` or `tests/Desfecho.AspNetCore.UnitTests`.
 
