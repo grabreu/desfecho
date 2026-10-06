@@ -150,4 +150,82 @@ public class ResultExtensionsTests
         // Assert
         apiResult.ShouldBeOfType<NoContent>();
     }
+
+    [Fact]
+    public async Task ToOk_WithValueTaskOfSuccessfulResult_ReturnsOkWithValue()
+    {
+        // Arrange
+        var result = ValueTask.FromResult<Result<string>>("value");
+
+        // Act
+        var apiResult = await result.ToOk();
+
+        // Assert
+        apiResult.ShouldBeOfType<Ok<string>>().Value.ShouldBe("value");
+    }
+
+    [Fact]
+    public async Task ToOk_WithValueTaskOfErrorResult_ReturnsProblem()
+    {
+        // Arrange
+        var result = ValueTask.FromResult<Result<string>>(Result.NotFound("Todo item was not found."));
+
+        // Act
+        var apiResult = await result.ToOk();
+
+        // Assert
+        apiResult.ShouldBeOfType<ProblemHttpResult>().StatusCode.ShouldBe(StatusCodes.Status404NotFound);
+    }
+
+    [Fact]
+    public async Task ToCreated_WithValueTaskOfSuccessfulResult_ReturnsCreated()
+    {
+        // Arrange
+        var result = ValueTask.FromResult<Result<string>>("value");
+
+        // Act
+        var apiResult = await result.ToCreated(value => $"/items/{value}");
+
+        // Assert
+        apiResult.ShouldBeOfType<Created<string>>().Location.ShouldBe("/items/value");
+    }
+
+    [Fact]
+    public async Task ToNoContent_WithValueTaskOfResult_ReturnsNoContent()
+    {
+        // Arrange
+        var result = ValueTask.FromResult(Result.Success());
+
+        // Act
+        var apiResult = await result.ToNoContent();
+
+        // Assert
+        apiResult.ShouldBeOfType<NoContent>();
+    }
+
+    [Fact]
+    public async Task ToNoContent_WithValueTaskOfResultOfValue_ReturnsNoContent()
+    {
+        // Arrange
+        var result = ValueTask.FromResult<Result<string>>("value");
+
+        // Act
+        var apiResult = await result.ToNoContent();
+
+        // Assert
+        apiResult.ShouldBeOfType<NoContent>();
+    }
+
+    [Fact]
+    public async Task Map_ThenToOk_WithValueTaskOfSuccessfulResult_ReturnsOkWithMappedValue()
+    {
+        // Arrange
+        var result = ValueTask.FromResult<Result<string>>("value");
+
+        // Act
+        var apiResult = await result.Map(value => value.Length).ToOk();
+
+        // Assert
+        apiResult.ShouldBeOfType<Ok<int>>().Value.ShouldBe(5);
+    }
 }

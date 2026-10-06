@@ -29,24 +29,37 @@ public static class ResultExtensions
         }
     }
 
-    extension<T>(Task<Result<T>> result)
+    // Task and ValueTask receivers use classic extension methods: CA2012 flags
+    // ValueTask values used as the receiver of an extension block member.
+    public static async Task<IResult> ToOk<T>(this Task<Result<T>> result)
     {
-        public async Task<IResult> ToOk()
-        {
-            return (await result).ToOk();
-        }
-
-        public async Task<IResult> ToCreated(Func<T, string> location)
-        {
-            return (await result).ToCreated(location);
-        }
+        return (await result).ToOk();
     }
 
-    extension<TResult>(Task<TResult> result) where TResult : Result
+    public static async Task<IResult> ToCreated<T>(this Task<Result<T>> result, Func<T, string> location)
     {
-        public async Task<IResult> ToNoContent()
-        {
-            return (await result).ToNoContent();
-        }
+        return (await result).ToCreated(location);
+    }
+
+    public static async Task<IResult> ToNoContent<TResult>(this Task<TResult> result)
+        where TResult : Result
+    {
+        return (await result).ToNoContent();
+    }
+
+    public static async ValueTask<IResult> ToOk<T>(this ValueTask<Result<T>> result)
+    {
+        return (await result).ToOk();
+    }
+
+    public static async ValueTask<IResult> ToCreated<T>(this ValueTask<Result<T>> result, Func<T, string> location)
+    {
+        return (await result).ToCreated(location);
+    }
+
+    public static async ValueTask<IResult> ToNoContent<TResult>(this ValueTask<TResult> result)
+        where TResult : Result
+    {
+        return (await result).ToNoContent();
     }
 }
