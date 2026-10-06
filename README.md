@@ -59,6 +59,12 @@ var dto = result
     .Map(todoItem => new TodoItemDto(todoItem));
 ```
 
+`Map` also works on `Task` and `ValueTask` of a `Result<TValue>`, so a handler call can be mapped and converted in one expression:
+
+```cs
+sender.Send(command, ct).Map(SignInResponse.From).ToOk();
+```
+
 `Value`, `Error` and `Errors` throw if the result is the other case; prefer `Match` or `TryGetValue` / `TryGetErrors`.
 
 ## Errors
