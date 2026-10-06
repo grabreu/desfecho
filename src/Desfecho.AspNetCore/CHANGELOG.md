@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/grabreu/desfecho/compare/Desfecho.AspNetCore-v1.1.0...Desfecho.AspNetCore-v1.2.0) (2026-10-06)
+
+
+### Features
+
+* add ToAccepted to minimal API result extensions ([#15](https://github.com/grabreu/desfecho/issues/15)) ([076d212](https://github.com/grabreu/desfecho/commit/076d212e2357701e1e91c5fb5fc8333914c0ba92))
+
 ## [1.1.0](https://github.com/grabreu/desfecho/compare/Desfecho.AspNetCore-v1.0.0...Desfecho.AspNetCore-v1.1.0) (2026-09-07)
 
 
