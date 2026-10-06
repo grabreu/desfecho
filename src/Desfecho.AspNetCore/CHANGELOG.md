@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/grabreu/desfecho/compare/Desfecho.AspNetCore-v2.0.0...Desfecho.AspNetCore-v2.1.0) (2026-10-06)
+
+
+### Features
+
+* add ValueTask support and async Map to result extensions ([#20](https://github.com/grabreu/desfecho/issues/20)) ([dca84a5](https://github.com/grabreu/desfecho/commit/dca84a5713d6035e5e883b3fbd7847dbefcb6c93))
+
 ## [2.0.0](https://github.com/grabreu/desfecho/compare/Desfecho.AspNetCore-v1.2.0...Desfecho.AspNetCore-v2.0.0) (2026-10-06)
 
 
