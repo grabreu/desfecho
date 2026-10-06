@@ -70,7 +70,7 @@ app.MapPost("/todo-items", async (CreateTodoItemRequest request, ISender sender,
 });
 ```
 
-`ToOk()`, `ToCreated(location)` and `ToNoContent()` cover the common cases; `errors.ToProblem()` is available directly for anything else.
+`ToOk()`, `ToCreated(location)`, `ToAccepted()` and `ToNoContent()` cover the common cases; `errors.ToProblem()` is available directly for anything else.
 
 ## Packages
 

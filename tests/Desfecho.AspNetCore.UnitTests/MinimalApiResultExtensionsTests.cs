@@ -165,4 +165,32 @@ public class MinimalApiResultExtensionsTests
         var problemDetails = apiResult.ShouldBeOfType<ProblemHttpResult>();
         problemDetails.StatusCode.ShouldBe(StatusCodes.Status400BadRequest);
     }
+
+    [Fact]
+    public async Task ToAccepted_WithSuccessfulResult_ReturnsAccepted()
+    {
+        // Arrange
+        Result<string> result = "value";
+
+        // Act
+        var apiResult = result.ToAccepted();
+
+        // Assert
+        var accepted = apiResult.ShouldBeOfType<Accepted>();
+        accepted.StatusCode.ShouldBe(StatusCodes.Status202Accepted);
+    }
+
+    [Fact]
+    public async Task ToAccepted_WithErrorResult_ReturnsProblem()
+    {
+        // Arrange
+        Result<string> result = Error.Validation("Name.Required", "Name is required.");
+
+        // Act
+        var apiResult = result.ToAccepted();
+
+        // Assert
+        var problemDetails = apiResult.ShouldBeOfType<ProblemHttpResult>();
+        problemDetails.StatusCode.ShouldBe(StatusCodes.Status400BadRequest);
+    }
 }
