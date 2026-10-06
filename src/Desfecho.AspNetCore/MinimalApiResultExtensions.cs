@@ -69,4 +69,11 @@ public static class MinimalApiResultExtensions
             _ => Results.NoContent(),
             errors => errors.ToProblem());
     }
+
+    public static IResult ToAccepted<T>(this Result<T> result)
+    {
+        return result.Match(
+            _ => Results.Accepted(),
+            errors => errors.ToProblem());
+    }
 }
